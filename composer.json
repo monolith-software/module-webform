@@ -1,0 +1,7 @@
+{
+    "name": "monolith-software/module-webform",
+    "description": "Web forms.",
+    "autoload": {
+        "psr-4": { "Monolith\\Module\\WebForm\\": "" }
+    }
+}

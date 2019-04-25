@@ -1,0 +1,4 @@
+#monolith_module.web_form.index:
+#    path: /
+#    defaults:
+#        _controller: WebFormModuleBundle:WebForm:index

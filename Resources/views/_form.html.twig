@@ -1,0 +1,5 @@
+{#{{ form(form, {'attr': {'class': 'form-horizontal'}} ) }}#}
+{#{% form_theme form 'ReCaptchaBundle::form_div_layout.html.twig' %}#}
+{#{% form_theme form 'GoogleReCaptchaBundle:Form:google_re_captcha_widget.html.twig' %}#}
+{{ form_errors(form) }}
+{{ form(form) }}

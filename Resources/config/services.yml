@@ -1,0 +1,19 @@
+parameters:
+#    web_form.example.class: Monolith\Module\WebForm\Example
+
+services:
+    web_form.mail.collector:
+        public: true
+        class: Monolith\Module\WebForm\Collector\MailCollector
+
+    web_form.mailer.listener:
+        class: Monolith\Module\WebForm\Listener\MailerListener
+        arguments: [ '@service_container' ]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    webformmodule.twig.web_form_extension:
+        class: Monolith\Module\WebForm\Twig\WebFormExtension
+        arguments: [ '@service_container' ]
+        tags:
+            - { name: twig.extension }

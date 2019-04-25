@@ -1,0 +1,63 @@
+web_form.admin:
+    path: /
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:index
+
+web_form.admin_manage:
+    path: /{name}/
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:manage
+
+web_form.admin_edit_message:
+    path: /{name}/{id}/
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:editMessage
+    requirements:
+        id: \d+
+
+web_form.admin_new_messages:
+    path: /{name}/new_messages/
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:messages
+        status: 0
+
+web_form.admin_in_progress:
+    path: /{name}/in_progress/
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:messages
+        status: 1
+
+web_form.admin_finished:
+    path: /{name}/finished/
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:messages
+        status: 2
+
+web_form.admin_rejected:
+    path: /{name}/rejected/
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:messages
+        status: 3
+
+web_form.admin_spam:
+    path: /{name}/spam/
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:messages
+        status: 5
+
+web_form.admin_fields:
+    path: /{name}/fields/
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:fields
+
+web_form.admin_field_edit:
+    path: /{name}/fields/{id}/
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:fieldEdit
+    requirements:
+        id: \d+
+
+web_form.admin_settings:
+    path: /{name}/settings/
+    defaults:
+        _controller: WebFormModuleBundle:AdminWebForm:settings

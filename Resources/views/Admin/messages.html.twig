@@ -1,0 +1,64 @@
+{% extends '@WebFormModule/Admin/_layout.html.twig' %}
+
+{% block page_description 'WebForm messages'|trans ~ ': &laquo;<strong>' ~ web_form ~ '</strong>&raquo;' %}
+
+{#
+{% block styles %}
+    {{ parent() }}
+    <style media="all" type="text/css">
+        .message_row {
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+#}
+
+{% block content %}
+
+    {{ block('nav') }}
+
+<div class="box">
+    <div class="box-body">
+
+    <p>Всего: <b>{{ pagerfanta.count }}</b></p>
+
+    <form action="" method="post">
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th style="width: 20px;"></th>
+            <th>{{ 'Date'|trans }}</th>
+            <th>{{ 'Briefly'|trans }}</th>
+            <th>{{ 'Comment'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in pagerfanta %}
+            <tr class="message_row">
+                <td><input type="checkbox" name="items[{{ item.id }}]"></td>
+                <td style="white-space: nowrap; width: 1%;"><a href="{{ path('web_form.admin_edit_message', {'id': item.id, 'name': web_form.name}) }}">{{ item.createdAt|format_datetime }}</a></td>
+                <td><a href="{{ path('web_form.admin_edit_message', {'id': item.id, 'name': web_form.name}) }}">{{ item.briefly }}</a></td>
+                <td>{{ item.comment }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tr>
+            <td colspan="5">
+                <a href="#all" onclick="$('.message_row input[type=checkbox]').iCheck('check')">Отметить все</a> / <a href="#all" onclick="$('.message_row input[type=checkbox]').iCheck('uncheck')">Снять выделение</a> / С отмеченными:
+                <button type="submit" name="submit" value="in_progress">{{ 'In progress'|trans }}</button>
+                <button type="submit" name="submit" value="finished">{{ 'Finished'|trans }}</button>
+                <button type="submit" name="submit" value="rejected">{{ 'Rejected'|trans }}</button>
+                <button type="submit" name="submit" value="spam">{{ 'Spam'|trans }}</button>
+            </td>
+        </tr>
+    </table>
+    </form>
+
+    {% if pagerfanta.haveToPaginate %}
+        {{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated', {'css_container_class': 'pagination pagination-centered'}) }}
+    {% endif %}
+
+    </div>
+</div>
+
+{% endblock content %}

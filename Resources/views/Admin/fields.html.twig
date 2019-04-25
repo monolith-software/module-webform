@@ -1,0 +1,48 @@
+{% extends '@WebFormModule/Admin/_layout.html.twig' %}
+
+{% block content %}
+
+{{ block('nav') }}
+
+<div class="box">
+    <div class="box-body">
+
+    <h3>{{ 'Fields of WebForm'|trans }}: &laquo;{{ web_form.title }}&raquo;</h3>
+
+    <table class="table table-bordered table-hover">
+        <thead><tr>
+            <th style="width: 1%;">id</th>
+            <th>{{ 'Title'|trans }}</th>
+            <th>{{ 'Name'|trans }}</th>
+            <th>{{ 'Type'|trans }}</th>
+            <th>{{ 'Position'|trans }}</th>
+            <th>{{ 'Is enabled'|trans }}</th>
+            <th>{{ 'Is required'|trans }}</th>
+            <th>{{ 'Created at'|trans }}</th>
+        </tr></thead>
+        <tbody>
+        {% for item in web_form_fields %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td><a href="{{ path('web_form.admin_field_edit', {'id': item.id, 'name': web_form.name}) }}">{{ item.title }}</a></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.type }}</td>
+                <td>{{ item.position }}</td>
+                <td>{{ item.isEnabled }}</td>
+                <td>{{ item.isRequired }}</td>
+                <td>{{ item.createdAt|date() }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+</div>
+
+    <h3>Создать новое поле</h3>
+
+    {% include '@CMS/Form/default.html.twig' %}
+
+    {% include '@CMS/_tool/ace_editor.html.twig' with {'form_element': 'monolith_module_webform_field_params_yaml'} %}
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+
+web_form.api:
+    path: /
+    methods: ['POST']
+    defaults:
+        _controller: WebFormModuleBundle:WebForm:ajax
+
+web_form.api.get_form:
+    path: /get_form
+    methods: ['POST']
+    defaults:
+        _controller: WebFormModuleBundle:WebForm:ajaxGetForm

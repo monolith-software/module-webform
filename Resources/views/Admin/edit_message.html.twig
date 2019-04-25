@@ -1,0 +1,24 @@
+{% extends '@WebFormModule/Admin/_layout.html.twig' %}
+
+{% block content %}
+
+    <h2>{{ 'Message'|trans }} #{{ form.vars.data.id }} от {{ form.vars.data.createdAt|format_datetime }}</h2>
+
+    {{ form_start(form, {'attr': {'class': 'form-horizontal well'}} ) }}
+
+    {% for field in web_form.fields %}
+        <div class="form-group">
+            <label class="control-label optional">{{ field.title }}:</label>
+            <div class="controls">
+                {% if field.isType('textarea') %}
+                    <textarea class="form-control" rows="10">{{ form.vars.data.dataValue(field.name) }}</textarea>
+                {% else %}
+                    <div class="form-control">{{ form.vars.data.dataValue(field.name) }}</div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    {{ form_end(form) }}
+
+{% endblock content %}

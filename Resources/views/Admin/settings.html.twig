@@ -1,0 +1,15 @@
+{% extends '@WebFormModule/Admin/_layout.html.twig' %}
+
+{% block content %}
+
+    {{ block('nav') }}
+
+<div class="box">
+    <div class="box-body">
+        <h3>{{ 'Settings of WebForm'|trans }}: &laquo;{{ web_form.title }}&raquo;</h3>
+
+        {% include '@CMS/Form/default.html.twig' %}
+    </div>
+</div>
+
+{% endblock %}

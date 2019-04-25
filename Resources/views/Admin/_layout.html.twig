@@ -1,0 +1,37 @@
+{% extends '@CMS/Admin/module.html.twig' %}
+
+{%- block title -%}
+    {% if title %}{{ title|trans }} / {% endif %}
+    {% if web_form.title %}&laquo;{{ web_form.title }}&raquo; / {% endif %}
+    {{ 'WebForms'|trans }} / {{ parent() }}
+{%- endblock -%}
+
+{% block page_header 'WebForms'|trans %}
+{% block page_description 'Module'|trans %}
+
+{% block nav %}
+
+    {#{% set __selected_inheritance = app.request.attributes.get('__selected_inheritance') %}#}
+    {#{% set __si = app.request.attributes.set('__selected_inheritance', false) %}#}
+
+    {% if nodePath %}
+        <a class="btn btn-default btn-small btn-sm" href="{{ nodePath }}" title="{{ app.request.host ~ nodePath }}" style="float: right; margin-top: 4px;">
+            <i class="icon-home"></i><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Перейти на страницу веб-формы на сайте
+        </a>
+    {% endif %}
+
+    {% if web_form %}
+        {% set configurationMenu = knp_menu_get('WebFormModuleBundle:WebFormMenu:admin', [], {
+            'web_form': web_form,
+        }) %}
+
+        {{ knp_menu_render(configurationMenu, {
+            'currentClass': 'active',
+            'clear_matcher': false,
+            'template': 'WebFormModuleBundle:Menu:knp_menu.html.twig',
+        }) }}
+    {% endif %}
+
+    {#{% set __si = app.request.attributes.set('__selected_inheritance', __selected_inheritance) %}#}
+
+{% endblock %}
